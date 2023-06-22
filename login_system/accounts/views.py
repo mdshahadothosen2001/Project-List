@@ -3,12 +3,13 @@ from django.http import HttpResponse
 from django.forms import inlineformset_factory
 from django.contrib.auth.forms import UserCreationForm
 
+from .templates.accounts.forms import UserForm
 
 def registerPage(request):
-    form = UserCreationForm()
+    form = UserForm()
 
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = UserForm(request.POST)
         if form.is_valid():
             form.save()
 
