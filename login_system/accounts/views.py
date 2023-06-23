@@ -4,7 +4,7 @@ from django.forms import inlineformset_factory
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 
 from .templates.accounts.forms import UserForm
 
@@ -38,6 +38,11 @@ def loginPage(request):
             
     context = {}
     return render(request, 'accounts/login.html',context)
+def logoutPage(request):
+    logout(request)
+    return redirect('login')
+
+
 def homePage(request):
     return render(request, 'accounts/home.html')
 
