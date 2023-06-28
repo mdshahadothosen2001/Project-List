@@ -31,3 +31,15 @@ pushes some project for learn concept and be friendly with this concepts.
 >+ views work by checking user group name
 >+ checking user group name if matched template statement do
 >+ otherwise no result 
+
+
+## one_time_passwords
+>+ make customuser model using abstracbaseuser
+>+ derived some from [custom_user_model]
+>+ include some specific model fields
+>+ using pyotp module
+>+ make 60 seconds session
+>+ after login , required otp as a input form
+>+ display otp at terminal
+>+ checking session time and otp
+>+ if true render home page otherwise required valid otp
