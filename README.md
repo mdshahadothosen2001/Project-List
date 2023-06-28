@@ -21,3 +21,13 @@ pushes some project for learn concept and be friendly with this concepts.
 >+ register completed after login 
 >+ then display home page otherwise login page
 >+ don't see login page and register page after login
+
+
+## custom_user_views:
+>+ here login page and register page and home page
+>+ including all from login_system
+>+ permission roles based views
+>+ making groups
+>+ views work by checking user group name
+>+ checking user group name if matched template statement do
+>+ otherwise no result 
