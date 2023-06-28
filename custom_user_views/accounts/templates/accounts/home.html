@@ -7,6 +7,24 @@
     <h1>Home Page</h1>
     
     <p>Hello {{request.user}}</p>
-    <span><a href="{% url 'logout' %}">logout</a></span>
+    <p>{{user}}</p>
+    <button><a href="{% url 'logout' %}">logout</a></button>
+
+    {% if 'admin' in user.name %}
+    <button><a href="{% url 'item' %}">Create Item</a></button>
+    {% endif %}
+
+    {% if 'admin' in user.name or 'customer' in user.name %}
+    <button><a href="{% url 'item' %}">Insert Item</a></button>
+    {% endif %}
+
+    {% if 'admin' in user.name %}
+    <button><a href="{% url 'item' %}">Delete Item</a></button>
+    {% endif %}
+
+    {% if 'admin' in user.name or 'customer' in user.name %}
+    <button><a href="{% url 'item' %}">Display Item</a></button>
+    {% endif %}
+
 </body>
 </html>
