@@ -4,4 +4,5 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('functionview/', include('functionview.urls')),
+    path('classview/', include('classview.urls')),
 ]
