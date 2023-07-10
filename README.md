@@ -43,3 +43,10 @@ pushes some project for learn concept and be friendly with this concepts.
 >+ display otp at terminal
 >+ checking session time and otp
 >+ if true render home page otherwise required valid otp
+
+
+
+## view_versatility
+>+ make two app (functionview, classview)
+>+ functionview here make views using function based concept
+>+ classview here make views using class based concept
