@@ -50,3 +50,12 @@ pushes some project for learn concept and be friendly with this concepts.
 >+ make two app (functionview, classview)
 >+ functionview here make views using function based concept
 >+ classview here make views using class based concept
+
+## model_data_access
+>+ make two app (accounts, tasks)
+>+ accounts have made two view for display data from model
+>+ tasks have 5 view (tasks_view, task_detail, task_update, task_delete)
+>+ tasks_view display all tasks name as a list
+>+ task_details display all data which want select by task id
+>+ task_update modify data any specific task select by task id
+>+ task_delete remove any specific task
