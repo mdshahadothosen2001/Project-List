@@ -1,4 +1,5 @@
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, CreateView
+from django.urls import reverse_lazy
 
 from .models import Tasks
 
@@ -10,3 +11,9 @@ class tasks_view(ListView):
 class tasks_detail(DetailView):
     model = Tasks
     context_object_name = 'task'
+
+class task_create(CreateView):
+    model = Tasks
+    template_name = 'tasks/task_create.html'
+    fields = '__all__'
+    success_url = reverse_lazy('tasks')
