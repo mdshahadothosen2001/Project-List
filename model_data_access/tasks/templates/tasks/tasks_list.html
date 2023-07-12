@@ -1,5 +1,9 @@
 <h1>Tasks List Display</h1>
 <a href="{% url 'task-create' %}">add task</a>
 {% for task in object_list %} 
-<p>Task Name: {{task.name}} <a href="{% url 'task' task.id %}">details</a> <a href="{% url 'task-update' task.id %}">update</a> </p>
+<p>Task Name: {{task.name}} 
+    <a href="{% url 'task' task.id %}">details</a> 
+    <a href="{% url 'task-update' task.id %}">update</a>
+    <a href="{% url 'task-delete' task.id %}">delete</a>
+ </p>
 {% endfor %}
