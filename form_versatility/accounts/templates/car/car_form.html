@@ -1,0 +1,19 @@
+<h1>Create a object</h1>
+
+<form method="POST" action="{% url 'car_form' %}">
+    {% csrf_token %}
+
+    <label for="model_name">model_name:</label>
+    <input type="text" id="model_name" name="model_name" required>
+    <br>
+
+    <label for="year">year:</label>
+    <input type="text" id="year" name="year" required>
+    <br>
+
+    <label for="driving_id">driving_id:</label>
+    <input type="text" name="driving_id" id="driving_id" required>
+    <br>
+
+    <input type="submit" value="submit">
+</form>
