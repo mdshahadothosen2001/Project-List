@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from django.views.generic import ListView
+from django.views.generic import ListView, CreateView
+from django.urls import reverse_lazy
 from .models import Car
 from .forms import CarForm
 
@@ -30,3 +31,9 @@ def car_form_fields(request):
     else:
         form = CarForm()
         return render(request, 'car/car_form_fields.html', {'form':form})
+    
+class car_form_default(CreateView):
+    model = Car
+    template_name = 'car/car_form_default.html'
+    fields = '__all__'
+    success_url = reverse_lazy('cars')
