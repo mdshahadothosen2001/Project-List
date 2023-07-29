@@ -59,3 +59,10 @@ pushes some project for learn concept and be friendly with this concepts.
 >+ task_details display all data which want select by task id
 >+ task_update modify data any specific task select by task id
 >+ task_delete remove any specific task
+
+## user_account_activation
+>+ make custom user model using abstracbaseuser
+>+ derived some from [custom_user_model]
+>+ include some specific model fields
+>+ make register and login page
+>+ view home page required login
