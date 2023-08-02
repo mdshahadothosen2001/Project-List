@@ -7,6 +7,15 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 from datetime import datetime
 
 
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.views import APIView
+
+
+from django.contrib.auth.hashers import make_password, check_password
+
+
+
+
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     @classmethod
     def get_token(cls, user):
@@ -15,7 +24,7 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         token['email'] = user.email
         token['first_name'] = user.first_name
         token['last_name'] = user.last_name
-        token['current_time'] = datetime.now().strftime('%Y:%m:%d')
+        token['current_date'] = datetime.now().strftime('%Y:%m:%d')
         current_time = datetime.now().strftime('%I:%M:%p')
 
         if 'AM' in current_time:
@@ -40,3 +49,14 @@ def getRoutes(request):
         '/api/token/refresh'
     ]
     return Response(routes)
+
+
+class home_view(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, *args, **kwargs):
+        return Response({'message': 'Welcome to the home view!'})
+    
+
+#print(make_password("testtest"))
+
