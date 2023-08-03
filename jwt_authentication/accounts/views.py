@@ -45,16 +45,8 @@ class User_Registration_View(APIView):
         
         first_name = request.data.get('first_name')
         last_name = request.data.get('last_name')
-        if first_name is None and last_name is None:
+        if first_name is None or last_name is None:
             response_data = {
-                "message":"you can not create user without first name and last name!"
-            }
-        elif first_name is None:
-            response_data = {
-                'message':'You can not create user without first name !'
-            }
-        elif last_name is None:
-            response_data = {
-                'message':'You can not create user without last name !'
+                "message":"you can not create user without fulfill name fields!"
             }
         return Response(response_data, status=400)
