@@ -1,52 +1,50 @@
-from django.contrib.auth.hashers import make_password, check_password
-from django.urls import reverse_lazy
-from django.views.generic.edit import CreateView
-from .models import CustomUser
-from .forms import UserRegistrationForm
-
-
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny
-from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework.exceptions import ValidationError
+
 from .serializers import UserRegistrationSerializer
 
-# make views for input data from HTMl from browser api
-class UserRegistrationView(CreateView):
-    model = CustomUser
-    form_class = UserRegistrationForm
-    template_name = 'accounts/register.html'
-    success_url = reverse_lazy('home') 
 
-    def form_valid(self, form):
-        response = super().form_valid(form)
-        user = self.object
-        password = form.cleaned_data.get('password')
-        if password:
-            user.set_password(password)
-            user.save()
-        return response
-#print(check_password("hellotest","pbkdf2_sha256$600000$YMjassgoudr5ekMLfsmrgD$2tl9zj60V8NY9HX973Jl49srRpKXJ5VhJnNEjCjfn8E="))
+class UserRegistrationView(APIView):
+    """ A class-based view for user regitration by json request api.
+    This view api need permission to authentication any authenticated user.
+    This class firstly check first name and last name included in request api to create user, 
+    if True then return validation error message.
+
+    Called UserRegistrationSerializer and check is valid or not,
+    If valid then save data and return successfull message.
+
+    Usage:
+    . Make a POST request to this view with fields in the request body.
+    . If fields is empy or missing any field,
+      it will return validation error message 'you can not create user without fulfill name fields!'.
+    . If serializer data is valid, 
+      it will return successfull message 'succesfull! user is created'.
+
+    # Resuest:
+    POST /api-auth/register/
 
 
-#make view for input data JSON from postman
-class User_Registration_View(APIView):
+    """
     permission_classes = [AllowAny]
 
-    def post(self, request, *args, **kwargs):
-     
+    def post(self, request, *args, **kwargs): 
+        email = request.data.get('email')   
         first_name = request.data.get('first_name')
         last_name = request.data.get('last_name')
-        if first_name is None or last_name is None:
-            response_data = {
-                "message":"you can not create user without fulfill name fields!"
-            }
-            return Response(response_data, status=400)
-        serializer = UserRegistrationSerializer(data=request.data)
-        if serializer.is_valid():
-            user = serializer.save()
+        password = request.data.get('password')
 
-            response_data = {
-                'message': "user is created"
-            }
-            return Response(response_data, status=201)
+        if first_name is None or last_name is None:
+            raise ValidationError('you can not create user without fulfill name fields!')
+
+        user_info = {
+            "email":email,
+            "first_name":first_name,
+            "last_name":last_name,
+            "password":password
+        }
+        serializer = UserRegistrationSerializer(data=user_info)
+        if serializer.is_valid():
+            serializer.save()
+            return Response('succesfull! user is created')
