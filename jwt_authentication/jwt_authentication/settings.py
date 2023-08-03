@@ -22,8 +22,8 @@ INSTALLED_APPS = [
     'accounts',
 
     'rest_framework',
-    'rest_framework_simplejwt.token_blacklist',
-    "corsheaders",
+#    'rest_framework_simplejwt.token_blacklist',
+#    "corsheaders",
 ]
 
 
@@ -38,7 +38,7 @@ REST_FRAMEWORK = {
 
 
 SIMPLE_JWT = {
-    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=5),
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=50),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
     "ROTATE_REFRESH_TOKENS": True,#False,
     "BLACKLIST_AFTER_ROTATION": True,# False,
