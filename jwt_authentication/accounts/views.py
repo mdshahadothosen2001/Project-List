@@ -37,8 +37,24 @@ class User_Registration_View(APIView):
         serializer = UserRegistrationSerializer(data=request.data)
         if serializer.is_valid():
             user = serializer.save()
+
             response_data = {
                 'message': "user is created"
             }
             return Response(response_data, status=201)
-        return Response(serializer.errors, status=400)
+        
+        first_name = request.data.get('first_name')
+        last_name = request.data.get('last_name')
+        if first_name is None and last_name is None:
+            response_data = {
+                "message":"you can not create user without first name and last name!"
+            }
+        elif first_name is None:
+            response_data = {
+                'message':'You can not create user without first name !'
+            }
+        elif last_name is None:
+            response_data = {
+                'message':'You can not create user without last name !'
+            }
+        return Response(response_data, status=400)
