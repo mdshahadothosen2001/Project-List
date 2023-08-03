@@ -4,10 +4,13 @@ from rest_framework.permissions import AllowAny
 from rest_framework.exceptions import ValidationError
 from .serializers import UserRegistrationSerializer
 
+
+
 class UserRegistrationView(APIView):
     """Users can register their account by email, frist_name, last_name and password."""
-    permission_classes = [AllowAny]
     
+    permission_classes = [AllowAny]
+
     def post(self, request, *args, **kwargs): 
         email = request.data.get('email')   
         first_name = request.data.get('first_name')
