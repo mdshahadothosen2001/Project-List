@@ -1,3 +1,4 @@
+from django.shortcuts import get_object_or_404
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny
@@ -36,31 +37,21 @@ class UserRegistrationView(APIView):
             serializer.save()
             return Response('succesfull! user is created')
 
-class UserActivation(APIView):
+class UserActivationView(APIView):
     """User can activate account by OTP received through email."""
     
-    def post(self, request, *args, **kwargs):
+    def patch(self, request, *args, **kwargs):
         email = request.data.get('email')
         otp = request.data.get('otp')
 
         if not email or not otp:
             raise ValidationError('Please provide both email and OTP.')
 
-        try:
-            otp_obj = OTP.objects.get(email=email, otp=otp)
-            otp_obj.delete()
+        otp_obj = get_object_or_404(OTP,email=email, otp=otp)
 
-            user = CustomUser.objects.get(email=email)
-            user.is_active = True
-            user.save()
+        user = CustomUser.objects.get(email=email)
+        user.is_active = True
+        user.save()
+        otp_obj.delete()
 
-            return Response('Your account has been activated!')
-
-        except OTP.DoesNotExist:
-            return Response('Invalid OTP, Please double check!')
-
-        except CustomUser.DoesNotExist:
-            return Response('No user found with this email address.')
-
-        except Exception as e:
-            return Response('Something went wrong. Please try again later.')
+        return Response('Your account has been activated!')
