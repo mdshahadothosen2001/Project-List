@@ -4,6 +4,7 @@ from rest_framework.permissions import AllowAny
 from rest_framework.exceptions import ValidationError
 from .serializers import UserRegistrationSerializer
 from .otp_send import send_otp_to_email
+from .models import OTP
 
 
 class UserRegistrationView(APIView):
@@ -20,7 +21,8 @@ class UserRegistrationView(APIView):
         if first_name is None or last_name is None:
             raise ValidationError('you can not create user without fulfill name fields!')
         
-        send_otp_to_email(email)
+        otp = send_otp_to_email(email)
+        OTP.objects.create(email=email, otp=otp)
 
         user_info = {
             "email":email,
