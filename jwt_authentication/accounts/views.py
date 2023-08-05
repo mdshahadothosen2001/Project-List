@@ -40,14 +40,13 @@ class UserRegistrationView(APIView):
 class UserActivationView(APIView):
     """User can activate account by OTP received through email."""
     
-    def get(self, request, *args, **kwargs):
+    def patch(self, request, *args, **kwargs):
         email = request.data.get('email')
         otp = request.data.get('otp')
 
         if not email or not otp:
             raise ValidationError('Please provide both email and OTP.')
 
-        
         otp_obj = get_object_or_404(OTP,email=email, otp=otp)
 
         user = CustomUser.objects.get(email=email)
