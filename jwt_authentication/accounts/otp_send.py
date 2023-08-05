@@ -11,5 +11,6 @@ def send_otp_to_email(email):
         from_email = settings.EMAIL_HOST_USER
         send_mail(subject, message, from_email, [email])
         print(f"{otp} OTP successfully sent to {email}")
+        return otp
     except Exception as e:
         print("Error sending OTP :",e)
