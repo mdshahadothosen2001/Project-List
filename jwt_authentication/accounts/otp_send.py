@@ -1,6 +1,9 @@
 import random
 from django.core.mail import send_mail
+from datetime import datetime, timedelta
 from django.conf import settings
+from django.utils import timezone
+from .models import OTP
 
 
 def send_otp_to_email(email):
@@ -14,3 +17,13 @@ def send_otp_to_email(email):
         return otp
     except Exception as e:
         print("Error sending OTP :",e)
+
+def otp_send(email):
+    otp = send_otp_to_email(email)
+    try:
+        otp_instance = OTP.objects.get(email=email)
+        otp_instance.otp = otp
+        otp_instance.created_at = datetime.now()
+        otp_instance.save()
+    except OTP.DoesNotExist:
+        otp_instance = OTP.objects.create(email=email, otp=otp)
