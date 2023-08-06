@@ -1,6 +1,5 @@
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.db import models
-from django.utils import timezone
 
 
 class CustomUserManager(BaseUserManager):
@@ -24,7 +23,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     last_name = models.CharField(max_length=100)
     is_active = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
-    date_joined = models.DateTimeField(default=timezone.now)
+    date_joined = models.DateTimeField(auto_now=True)
 
     objects = CustomUserManager()
 
@@ -40,7 +39,8 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 class OTP(models.Model):
     email = models.EmailField(unique=True)
     otp = models.CharField(max_length=6)
-    created_at = models.DateTimeField(default=timezone.now)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.email

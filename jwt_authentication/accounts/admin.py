@@ -2,5 +2,8 @@ from django.contrib import admin
 from .models import CustomUser, OTP
 
 
+class AuthenticationAdmin(admin.ModelAdmin):
+    readonly_fields = ("created_at", "updated_at")
+    
 admin.site.register(CustomUser)
-admin.site.register(OTP)
+admin.site.register(OTP, AuthenticationAdmin)
