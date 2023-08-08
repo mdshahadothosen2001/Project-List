@@ -79,6 +79,9 @@ class UserPasswordResetView(APIView):
 
     def patch(self, request, *args, **kwargs):
         token = request.data.get('token')
+        new_password = request.data.get('new_password')
+        if token is None and new_password is None:
+            return Response({'message':'can not change password, please include token and new password'})
         secret_key = settings.SECRET_KEY
         decoded_token = jwt.decode(token, secret_key, algorithms=['HS256'])
         email = decoded_token.get('email')
@@ -86,7 +89,7 @@ class UserPasswordResetView(APIView):
             user = CustomUser.objects.get(email=email)
             data = {
                 'token':token,
-                'new_password':request.data.get('new_password')
+                'new_password':new_password
             }
             serializer = ChangePasswordSerializer(data=data)
             if serializer.is_valid():
