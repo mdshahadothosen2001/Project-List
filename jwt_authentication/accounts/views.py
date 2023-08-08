@@ -5,10 +5,12 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny
 from rest_framework.exceptions import ValidationError
-from .serializers import UserRegistrationSerializer
+from .serializers import UserRegistrationSerializer, ChangePasswordSerializer
 from .otp_send import otp_send
 from .models import CustomUser
 from .models import OTP
+from django.conf import settings
+import jwt
 
 
 class UserRegistrationView(APIView):
@@ -68,3 +70,31 @@ class UserActivationView(APIView):
         user.save()
         otp_obj.delete()
         return Response('Your account has been activated!')
+
+
+class UserPasswordResetView(APIView):
+    """User can change thier password by token with new password"""
+
+    permission_classes = [AllowAny]
+
+    def patch(self, request, *args, **kwargs):
+        token = request.data.get('token')
+        secret_key = settings.SECRET_KEY
+        decoded_token = jwt.decode(token, secret_key, algorithms=['HS256'])
+        email = decoded_token.get('email')
+        if email:
+            user = CustomUser.objects.get(email=email)
+            data = {
+                'token':token,
+                'new_password':request.data.get('new_password')
+            }
+            serializer = ChangePasswordSerializer(data=data)
+            if serializer.is_valid():
+                new_password = serializer.validated_data['new_password']
+                user.set_password(new_password)
+                user.save()
+                return Response({'message':'successfully changed password'})
+        else:
+            return Response('Email not found!')
+        
+        return Response('user')
