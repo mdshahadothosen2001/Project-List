@@ -2,6 +2,14 @@ from django.urls import path
 from .views import UserRegistrationView, UserActivationView
 
 urlpatterns = [
-    path('register/', UserRegistrationView.as_view(), name='register'),
-    path('activate/', UserActivationView.as_view(), name='activate'),
+    path(
+        route="register/",
+        view=UserRegistrationView.as_view(),
+        name='user_registration'
+    ),
+    path(
+        route="activate/",
+        view=UserActivationView.as_view(),
+        name='user_activation'
+    )
 ]

@@ -1,5 +1,6 @@
 from django.shortcuts import get_object_or_404
-from datetime import datetime, timedelta
+from datetime import datetime
+from django.utils import timezone
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny
@@ -47,15 +48,21 @@ class UserActivationView(APIView):
             raise ValidationError('Please provide both email and OTP.')
 
         otp_obj = get_object_or_404(OTP,email=email, otp=otp)
-        
-        now_time = datetime.now()
-        created_at_naive = otp_obj.created_at.replace(tzinfo=None)
-        updated_time = created_at_naive + timedelta(minutes=2)
-        updated_minutes = updated_time.minute
-        now_minutes = now_time.minute
-        print('now minutes', now_minutes, 'created_minutes + otp validation minutes', updated_minutes)
 
-        if now_minutes >= updated_minutes:
+        now = datetime.now()
+        now_date = f"{now.day:02d}:{now.month:02d}:{now.year}"
+        now_time = (now.hour*3600)+ (now.minute*60)+ (now.second)
+        
+        created_time = otp_obj.created_at
+        created_time = timezone.localtime(created_time)
+        otp_obj_date = f"{created_time.day:02d}:{created_time.month:02d}:{created_time.year}"
+        otp_obj_time = (created_time.hour*3600)+ (created_time.minute*60)+ (created_time.second)
+        validation_time = otp_obj_time+(120)
+
+        if now_date != otp_obj_date:
+            otp_obj.delete()
+            return Response('Timeout!, OTP has expired.')
+        if now_time >= validation_time:
             otp_obj.delete()
             return Response('Timeout!, OTP has expired.')
         
@@ -63,5 +70,4 @@ class UserActivationView(APIView):
         user.is_active = True
         user.save()
         otp_obj.delete()
-
         return Response('Your account has been activated!')
