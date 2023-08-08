@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404
-from datetime import datetime
+from datetime import datetime, timedelta
 from django.utils import timezone
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -49,15 +49,12 @@ class UserActivationView(APIView):
 
         otp_obj = get_object_or_404(OTP,email=email, otp=otp)
 
-        now = datetime.now()
-        now_date = f"{now.day:02d}:{now.month:02d}:{now.year}"
-        now_time = (now.hour*3600)+ (now.minute*60)+ (now.second)
+        now_date = datetime.now().date()
+        now_time = datetime.now().time().strftime('%H:%M:%S')
         
-        created_time = otp_obj.created_at
-        created_time = timezone.localtime(created_time)
-        otp_obj_date = f"{created_time.day:02d}:{created_time.month:02d}:{created_time.year}"
-        otp_obj_time = (created_time.hour*3600)+ (created_time.minute*60)+ (created_time.second)
-        validation_time = otp_obj_time+(120)
+        otp_obj_date = otp_obj.created_at.date()
+        validation_time = timezone.localtime(otp_obj.created_at)+timedelta(minutes=2)
+        validation_time  = validation_time.time().strftime('%H:%M:%S')
 
         if now_date != otp_obj_date:
             otp_obj.delete()
