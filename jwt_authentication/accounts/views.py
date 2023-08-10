@@ -78,20 +78,16 @@ class UserPasswordResetView(APIView):
     permission_classes = [AllowAny]
 
     def patch(self, request, *args, **kwargs):
-        token = request.data.get('token')
+        token = request.session.get('token')
         new_password = request.data.get('new_password')
-        if token is None and new_password is None:
-            return Response({'message':'can not change password, please include token and new password'})
+        if new_password is None:
+            return Response({'message':'new_password is required'})
         secret_key = settings.SECRET_KEY
         decoded_token = jwt.decode(token, secret_key, algorithms=['HS256'])
         email = decoded_token.get('email')
         if email:
             user = CustomUser.objects.get(email=email)
-            data = {
-                'token':token,
-                'new_password':new_password
-            }
-            serializer = ChangePasswordSerializer(data=data)
+            serializer = ChangePasswordSerializer(data={'new_password':new_password})
             if serializer.is_valid():
                 new_password = serializer.validated_data['new_password']
                 user.set_password(new_password)
@@ -99,5 +95,3 @@ class UserPasswordResetView(APIView):
                 return Response({'message':'successfully changed password'})
         else:
             return Response('Email not found!')
-        
-        return Response('user')
