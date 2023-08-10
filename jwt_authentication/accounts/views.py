@@ -9,8 +9,7 @@ from .serializers import UserRegistrationSerializer, ChangePasswordSerializer
 from .otp_send import otp_send
 from .models import CustomUser
 from .models import OTP
-from django.conf import settings
-import jwt
+from .utils import get_access_token_from_session
 
 
 class UserRegistrationView(APIView):
@@ -78,13 +77,10 @@ class UserPasswordResetView(APIView):
     permission_classes = [AllowAny]
 
     def patch(self, request, *args, **kwargs):
-        token = request.session.get('token')
         new_password = request.data.get('new_password')
         if new_password is None:
             return Response({'message':'new_password is required'})
-        secret_key = settings.SECRET_KEY
-        decoded_token = jwt.decode(token, secret_key, algorithms=['HS256'])
-        email = decoded_token.get('email')
+        email = get_access_token_from_session(request)
         if email:
             user = CustomUser.objects.get(email=email)
             serializer = ChangePasswordSerializer(data={'new_password':new_password})
