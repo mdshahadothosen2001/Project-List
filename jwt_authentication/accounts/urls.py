@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import UserRegistrationView, UserActivationView, UserPasswordResetView
+from .views import UserRegistrationView, UserActivationView, UserPasswordResetView, ForgottenPasswordResetView
 
 urlpatterns = [
 #localhost:8000/api-auth/register/
@@ -19,5 +19,11 @@ urlpatterns = [
         route="reset/",
         view=UserPasswordResetView.as_view(),
         name='change_password'
-    )
+    ),
+    #localhost:8000/api-auth/recover/
+    path(
+        route="recover/",
+        view=ForgottenPasswordResetView.as_view(),
+        name='forgotten_password'
+    ),
 ]
