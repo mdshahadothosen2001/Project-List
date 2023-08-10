@@ -5,11 +5,11 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny
 from rest_framework.exceptions import ValidationError
-from .serializers import UserRegistrationSerializer, ChangePasswordSerializer
+from .serializers import UserRegistrationSerializer
 from .otp_send import otp_send
 from .models import CustomUser
 from .models import OTP
-from .utils import get_access_token_from_session
+from .utils import token_validation
 
 
 class UserRegistrationView(APIView):
@@ -78,16 +78,14 @@ class UserPasswordResetView(APIView):
 
     def patch(self, request, *args, **kwargs):
         new_password = request.data.get('new_password')
-        if new_password is None:
-            return Response({'message':'new_password is required'})
-        email = get_access_token_from_session(request)
+        if not new_password:
+            raise ValidationError('new_password required')
+        payload = token_validation(request)
+        email = payload.get('email')
         if email:
             user = CustomUser.objects.get(email=email)
-            serializer = ChangePasswordSerializer(data={'new_password':new_password})
-            if serializer.is_valid():
-                new_password = serializer.validated_data['new_password']
-                user.set_password(new_password)
-                user.save()
-                return Response({'message':'successfully changed password'})
+            user.set_password(new_password)
+            user.save()
+            return Response({'message':'successfully changed password'})
         else:
             return Response('Email not found!')
