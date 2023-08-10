@@ -10,6 +10,7 @@ from .otp_send import otp_send
 from .models import CustomUser
 from .models import OTP
 from .utils import token_validation
+from .utils import recovery_key
 
 
 class UserRegistrationView(APIView):
@@ -89,3 +90,17 @@ class UserPasswordResetView(APIView):
             return Response({'message':'successfully changed password'})
         else:
             return Response('Email not found!')
+        
+class ForgottenPasswordResetView(APIView):
+    """User can recreate password by thier email and first_name"""
+
+    def patch(self, request):
+        email = request.data.get('email')
+        first_name = request.data.get('first_name')
+        if email and first_name:
+            recovery_password = recovery_key(email)
+            user = get_object_or_404(CustomUser,email=email, first_name=first_name)
+            user.set_password(recovery_password)
+            user.save()
+            return Response('successfully done!')
+        raise ValidationError('Required email and name first name')
