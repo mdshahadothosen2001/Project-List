@@ -66,3 +66,23 @@ pushes some project for learn concept and be friendly with this concepts.
 >+ include some specific model fields
 >+ make register and login page
 >+ view home page required login
+
+## form_versatility
+>+ make form many way
+>+ class based form
+>+ function based form
+>+ html based form
+>+ use django default form
+
+## jwt_authentication
+>+ make custom user model
+>+ make api for token
+>+ use jwt authentication system
+>+ make home view with permission 
+>+ authorization can by bearer token
+>+ send otp to email
+>+ set otp validation time
+>+ token save in user request session
+>+ can access token or payload data from anywhere
+>+ change password just give new_password
+>+ recover account password by email and first name
