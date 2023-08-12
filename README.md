@@ -86,3 +86,12 @@ pushes some project for learn concept and be friendly with this concepts.
 >+ can access token or payload data from anywhere
 >+ change password just give new_password
 >+ recover account password by email and first name
+
+## signal_middleware
+>+ make app and model
+>+ make a user view api for create new user or display user list
+>+ used signal
+>+ make signal function to send welcome message to user when user do registration
+>+ used middleware
+>+ print message when hit request api
+>+ print message when return response api 
