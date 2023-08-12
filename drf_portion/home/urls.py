@@ -6,7 +6,7 @@ urlpatterns = [
     #http://127.0.0.1:8000/home/hello/
     path(
         route = 'hello/',
-        view = HelloWorldView,
+        view = HelloWorldView.as_view(),
         name = 'hello'
     ),
 ]
