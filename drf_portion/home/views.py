@@ -3,5 +3,6 @@ from rest_framework.response import Response
 
 
 class HelloWorldView(APIView):
-    def get(request, format=None):
-        return Response({'message':"Hello Word"})
+    def post(self,request, format=None):
+        print(request.data)
+        return Response({'message':"Hello Word", 'user_data':request.data})
