@@ -3,6 +3,7 @@ from rest_framework.response import Response
 
 
 class HelloWorldView(APIView):
-    def put(self,request, format=None):
+    def delete(self,request, format=None):
         print(request.data)
+        print('method name ', request.method)
         return Response({'message':"Hello Word", 'user_data':request.data})
