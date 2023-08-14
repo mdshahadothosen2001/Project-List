@@ -9,22 +9,25 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-INSTALLED_APPS = [
+DJANGO_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-    'accounts',
-
-    'rest_framework',
-#    'rest_framework_simplejwt.token_blacklist',
-#    "corsheaders",
-
-      'contacts'
 ]
+
+THIRD_PARTY_APPS = [
+    'rest_framework',
+]
+
+LOCAL_APPS = [
+    'accounts',
+    'contacts',
+]
+
+INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 REST_FRAMEWORK = {
 
