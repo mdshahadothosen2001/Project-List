@@ -2,12 +2,12 @@
 pushes some project for learn concept and be friendly with this concepts.
 
 #
- 
+
 
 ## login_system:
 >+ here login page and register page and home page
 >+ see login page and register page before login
->+ register completed after login 
+>+ register completed after login
 >+ then display home page otherwise login page
 >+ don't see login page and register page after login
 
@@ -18,7 +18,7 @@ pushes some project for learn concept and be friendly with this concepts.
 >+ phone number required exact 11 digit
 >+ here login page and register page and home page
 >+ see login page and register page before login
->+ register completed after login 
+>+ register completed after login
 >+ then display home page otherwise login page
 >+ don't see login page and register page after login
 
@@ -30,7 +30,7 @@ pushes some project for learn concept and be friendly with this concepts.
 >+ making groups
 >+ views work by checking user group name
 >+ checking user group name if matched template statement do
->+ otherwise no result 
+>+ otherwise no result
 
 
 ## one_time_passwords
@@ -78,7 +78,7 @@ pushes some project for learn concept and be friendly with this concepts.
 >+ make custom user model
 >+ make api for token
 >+ use jwt authentication system
->+ make home view with permission 
+>+ make home view with permission
 >+ authorization can by bearer token
 >+ send otp to email
 >+ set otp validation time
@@ -94,4 +94,9 @@ pushes some project for learn concept and be friendly with this concepts.
 >+ make signal function to send welcome message to user when user do registration
 >+ used middleware
 >+ print message when hit request api
->+ print message when return response api 
+>+ print message when return response api
+
+## drf_portion
+>+ it's a drf concepts learn project
+>+ one by one topic learn and implement
+>+ push and learn new concepts
