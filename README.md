@@ -100,3 +100,6 @@ pushes some project for learn concept and be friendly with this concepts.
 >+ it's a drf concepts learn project
 >+ one by one topic learn and implement
 >+ push and learn new concepts
+
+## orm_portion
+>+ used for django orm concepts
