@@ -7,11 +7,11 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = CustomUser
-        fields = ['email', 'first_name', 'last_name', 'password']
+        fields = ["email", "first_name", "last_name", "password"]
 
     def create(self, validated_data):
-        password = validated_data.pop('password')
-        user = super().create(validated_data) 
+        password = validated_data.pop("password")
+        user = super().create(validated_data)
         user.set_password(password)
         user.save()
 

@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from .manager import UserManager
 
+
 class CustomUser(AbstractUser):
     username = None
     phone_number = models.CharField(max_length=11, unique=True)
@@ -15,6 +16,6 @@ class CustomUser(AbstractUser):
     religion = models.CharField(max_length=20)
     nationality = models.CharField(max_length=55)
 
-    USERNAME_FIELD = 'phone_number'
+    USERNAME_FIELD = "phone_number"
     REQUIRED_FIELDS = []
     objects = UserManager()

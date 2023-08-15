@@ -3,10 +3,6 @@ from .views import HelloWorldView
 
 
 urlpatterns = [
-    #http://127.0.0.1:8000/home/hello/
-    path(
-        route = 'hello/',
-        view = HelloWorldView.as_view(),
-        name = 'hello'
-    ),
+    # http://127.0.0.1:8000/home/hello/
+    path(route="hello/", view=HelloWorldView.as_view(), name="hello"),
 ]

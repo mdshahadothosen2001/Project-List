@@ -17,13 +17,13 @@ class address(models.Model):
     city = models.CharField(max_length=255)
     region = models.CharField(max_length=255)
     postal_code = models.CharField(max_length=255)
-    country_id = models.ForeignKey(country, on_delete = models.CASCADE)
+    country_id = models.ForeignKey(country, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.unit_number
 
 
 class user_address(models.Model):
-    user_id = models.ForeignKey(CustomUser, on_delete = models.CASCADE)
-    address_id = models.ForeignKey(address, on_delete = models.CASCADE)
+    user_id = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    address_id = models.ForeignKey(address, on_delete=models.CASCADE)
     is_default = models.BooleanField()
