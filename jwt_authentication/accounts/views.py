@@ -6,9 +6,9 @@ from rest_framework.response import Response
 from rest_framework.permissions import AllowAny
 from rest_framework.exceptions import ValidationError
 from .serializers import UserRegistrationSerializer
-from .otp_send import otp_send
+from otp.otp_send import otp_send
 from .models import CustomUser
-from .models import OTP
+from otp.models import OTP
 from .utils import token_validation
 from .utils import recovery_key
 
@@ -19,6 +19,8 @@ class UserRegistrationView(APIView):
     permission_classes = [AllowAny]
 
     def post(self, request, *args, **kwargs):
+        """Used to create user account and send otp by calling otp function"""
+
         email = request.data.get("email")
         first_name = request.data.get("first_name")
         last_name = request.data.get("last_name")
@@ -35,17 +37,23 @@ class UserRegistrationView(APIView):
             "last_name": last_name,
             "password": password,
         }
+
         serializer = UserRegistrationSerializer(data=user_info)
         if serializer.is_valid():
             serializer.save()
             otp_send(email)
+
             return Response("succesfull! user is created")
 
 
 class UserActivationView(APIView):
     """User can activate account by OTP received through email."""
 
+    permission_classes = [AllowAny]
+
     def patch(self, request, *args, **kwargs):
+        """Used to update user activate status by otp confirm"""
+
         email = request.data.get("email")
         otp = request.data.get("otp")
 
@@ -63,15 +71,19 @@ class UserActivationView(APIView):
 
         if now_date != otp_obj_date:
             otp_obj.delete()
+
             return Response("Timeout!, OTP has expired.")
+
         if now_time >= validation_time:
             otp_obj.delete()
+
             return Response("Timeout!, OTP has expired.")
 
         user = CustomUser.objects.get(email=email)
         user.is_active = True
         user.save()
         otp_obj.delete()
+
         return Response("Your account has been activated!")
 
 
@@ -81,16 +93,23 @@ class UserPasswordResetView(APIView):
     permission_classes = [AllowAny]
 
     def patch(self, request, *args, **kwargs):
+        """This method used to recreate user password when user logined"""
+
         new_password = request.data.get("new_password")
+
         if not new_password:
             raise ValidationError("new_password required")
+
         payload = token_validation(request)
         email = payload.get("email")
+
         if email:
             user = CustomUser.objects.get(email=email)
             user.set_password(new_password)
             user.save()
+
             return Response({"message": "successfully changed password"})
+
         else:
             return Response("Email not found!")
 
@@ -99,12 +118,17 @@ class ForgottenPasswordResetView(APIView):
     """User can recreate password by thier email and first_name"""
 
     def patch(self, request):
+        """This method used to generate temporary password"""
+
         email = request.data.get("email")
         first_name = request.data.get("first_name")
+
         if email and first_name:
             recovery_password = recovery_key(email)
             user = get_object_or_404(CustomUser, email=email, first_name=first_name)
             user.set_password(recovery_password)
             user.save()
+
             return Response("successfully done!")
+
         raise ValidationError("Required email and name first name")
