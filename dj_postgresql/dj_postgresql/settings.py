@@ -1,4 +1,6 @@
 from pathlib import Path
+from .DB_SETTINGS import DATABASES
+
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -11,7 +13,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
-INSTALLED_APPS = [
+DJANGO_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -19,6 +21,12 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
 ]
+
+LOCAL_APPS = [
+    "persons",
+]
+
+INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -51,16 +59,7 @@ TEMPLATES = [
 WSGI_APPLICATION = "dj_postgresql.wsgi.application"
 
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "",
-        "USER": "",
-        "PASSWORD": "",
-        "HOST": "",
-        "PORT": "",
-    }
-}
+DATABASES = DATABASES
 
 
 AUTH_PASSWORD_VALIDATORS = [
