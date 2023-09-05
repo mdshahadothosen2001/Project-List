@@ -1,0 +1,16 @@
+<h3>Product List</h3>
+
+<table>
+    <tr>
+        <p>Product name</p>
+    </tr>
+
+    {% for product in products %}
+    <tr>
+        <p>{{product.name}}</p>
+    </tr>
+    {% empty %}
+       <p>No Item</p>
+    {% endfor %}
+
+</table>
