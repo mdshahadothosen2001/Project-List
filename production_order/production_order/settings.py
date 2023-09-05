@@ -1,8 +1,9 @@
 from pathlib import Path
 
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = "django-insecure-(-_5ij7(lq_^!b(z1!fq5i2aud#qlskr6_b&bz*sit%0q_2-#a"
+SECRET_KEY = "django-insecure-@cu(rc&e+p@vp+#%6=on$mf036cijbzq))5te7qqo_y*o#bxj*"
 
 DEBUG = True
 
@@ -18,11 +19,7 @@ DJANGO_APPS = [
     "django.contrib.staticfiles",
 ]
 
-LOCAL_APPS = [
-    "calculations",
-]
-
-INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS
+INSTALLED_APPS = DJANGO_APPS
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -34,7 +31,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "day_calculator.urls"
+ROOT_URLCONF = "production_order.urls"
 
 TEMPLATES = [
     {
@@ -52,7 +49,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "day_calculator.wsgi.application"
+WSGI_APPLICATION = "production_order.wsgi.application"
 
 
 DATABASES = {
@@ -86,7 +83,6 @@ TIME_ZONE = "UTC"
 USE_I18N = True
 
 USE_TZ = True
-
 
 STATIC_URL = "static/"
 
