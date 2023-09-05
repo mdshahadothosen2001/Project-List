@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
 from product.models import Product
-from order.models import Order
 
 
 class ProductListView(ListView):
@@ -11,3 +11,11 @@ class ProductListView(ListView):
     model = Product
     template_name = "product/product_list.html"
     context_object_name = "products"
+
+
+class ProductDetailView(LoginRequiredMixin, DetailView):
+    """User can Order from product table"""
+
+    model = Product
+    template_name = "product/product_detail.html"
+    context_object_name = "product"
