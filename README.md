@@ -105,9 +105,17 @@ pushes some project for learn concept and be friendly with this concepts.
 >+ used for django orm concepts
 
 ## production_order
->+ used for django class based display data of model
->+ used django templates and views
+
+**FUNCTIONS**
+>+ django class based display data from model
+>+ django templates and views
 >+ user can order confirm from product list
+
+**USAGE**
+
+>+ go browser (http://127.0.0.1:8000/)
+>+ first login, see product list
+>+ have oder option, if need order just click
 
 ## production_order
 
