@@ -103,3 +103,26 @@ pushes some project for learn concept and be friendly with this concepts.
 
 ## orm_portion
 >+ used for django orm concepts
+
+## production_order
+
+**FUNCTIONS**
+>+ django class based display data from model
+>+ django templates and views
+>+ user can order confirm from product list
+
+**USAGE**
+
+>+ go browser (http://127.0.0.1:8000/)
+>+ first login, see product list
+>+ have oder option, if need order just click
+
+## production_order
+
+**FUNCTIONS**
+>+ used DRF and make APIs
+
+**USE:**
+>+ home API for login with username and password (can use postman for API test) (GET: http://127.0.0.1:8000/base/home/)
+>+ product API (GET) for response product list with detail path is (GET: http://127.0.0.1:8000/base/)
+>+ order api for generate order with (POST method) request product id like (POST: http://127.0.0.1:8000/base/order)({ "products":[1,3]})
