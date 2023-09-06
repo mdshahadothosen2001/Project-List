@@ -7,7 +7,7 @@
 
     {% for product in products %}
     <tr>
-        <p>{{product.name}} <a href="{% url 'product' product.id %}">Detail</a> </p>
+        <p>{{product.name}} <a href="{% url 'product' product.id %}">order</a> </p>
     </tr>
     {% empty %}
        <p>No Item</p>
