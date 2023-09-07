@@ -282,3 +282,36 @@ like
 >+ for generate order  (http://127.0.0.1:8000/base/order) method is POST and with request data product id
 like
 { "products":[1,3]}
+
+
+
+#
+## dj_postgresql
+
+**FUNCTION**
+>+
+
+**USE**
+>+
+
+
+
+#
+## day_calculator
+
+**FUNCTION**
+>+
+
+**USE**
+>+
+
+
+
+#
+## name_picker
+
+**FUNCTION**
+>+
+
+**USE**
+>+
