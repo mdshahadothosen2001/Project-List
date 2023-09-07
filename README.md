@@ -147,7 +147,9 @@ pushes some project for learn concept and be friendly with this concepts.
 **USE**
 >+ create car detail with some path
 >for using diffrent way like function, class based and default
->+ create (http://127.0.0.1:8000/accounts/car-form/) or (http://127.0.0.1:8000/accounts/car-form-feilds/) or (http://127.0.0.1:8000/accounts/car_form_default/)
+>+ create (http://127.0.0.1:8000/accounts/car-form/)
+or (http://127.0.0.1:8000/accounts/car-form-feilds/)
+or (http://127.0.0.1:8000/accounts/car_form_default/)
 >+ see (http://127.0.0.1:8000/accounts/cars/)
 
 
@@ -171,22 +173,30 @@ pushes some project for learn concept and be friendly with this concepts.
 **USE**
 >+ RESTFull API
 >+ user can use postman app for API hit
->+ first register with data request and hit api (http://127.0.0.1:8000/api/register/) method is POST and data like
+>+ first register with data request and hit api
+(http://127.0.0.1:8000/api/register/) method is POST and data
+like
 {"email":"test@gmail.com",
   "first_name":"test",
   "last_name":"test",
   "password":"test"
 }
->+ then activate account with otp and API (http://127.0.0.1:8000/api/activate/) and method is PATCH and data like
+>+ then activate account with otp and API
+ (http://127.0.0.1:8000/api/activate/) and method is PATCH and data
+ like
 {"email":"test@gmail.com",
 "otp":9070}
->+ token for (http://127.0.0.1:8000/api/token/) method is POST and data like
+>+ token for (http://127.0.0.1:8000/api/token/) method is POST and data
+like
 {"email":"test@gmail.com",
 "password":"test"
 }
->+ refresh token for (http://127.0.0.1:8000/api/token/refresh/) method is POST and data like {"access":"....."}
->+ then need to login with token (http://127.0.0.1:8000/api/home/) method is GET and give token at postman app auth -> bearer option
->+ for change password (http://127.0.0.1:8000/api/reset/) method is PATCH and with new password like
+>+ refresh token for (http://127.0.0.1:8000/api/token/refresh/) method is POST and data like
+{"access":"....."}
+>+ then need to login with token
+(http://127.0.0.1:8000/api/home/) method is GET and give token at postman app auth -> bearer option
+>+ for change password (http://127.0.0.1:8000/api/reset/) method is PATCH and with new password
+ like
 {"new_password":"......"}
 >+ forgotten password (http://127.0.0.1:8000/api/recover/) method is PATCH and with data like
 {"email":".......",
@@ -269,5 +279,6 @@ pushes some project for learn concept and be friendly with this concepts.
 >+ user can use postman app for API hit
 >+ login for  (http://127.0.0.1:8000/base/home/) method is GET then select auth option then basic in postman app
 >+ see product list (http://127.0.0.1:8000/base/) method is GET
->+ for generate order  (http://127.0.0.1:8000/base/order) method is POST and with request data product id like
-({ "products":[1,3]})
+>+ for generate order  (http://127.0.0.1:8000/base/order) method is POST and with request data product id
+like
+{ "products":[1,3]}
