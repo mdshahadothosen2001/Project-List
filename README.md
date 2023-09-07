@@ -35,7 +35,11 @@ pushes some project for learn concept and be friendly with this concepts.
 >+ can view (http://127.0.0.1:8000/accounts/home/)
 
 
+
+#
 ## custom_user_views:
+
+**FUNCTIONS**
 >+ here login page and register page and home page
 >+ including all from login_system
 >+ permission roles based views
@@ -43,6 +47,12 @@ pushes some project for learn concept and be friendly with this concepts.
 >+ views work by checking user group name
 >+ checking user group name if matched template statement do
 >+ otherwise no result
+
+**USE**
+>+ first register (http://127.0.0.1:8000/accounts/register/)
+>+ then login (http://127.0.0.1:8000/accounts/login/)
+>+ user can view if permitted your group 'customer' (http://127.0.0.1:8000/accounts/home/)
+
 
 
 ## one_time_passwords
