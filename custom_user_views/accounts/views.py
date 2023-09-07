@@ -57,6 +57,6 @@ def homePage(request):
 
 
 @login_required(login_url="login")
-@allowed_users(allowed_roles=["admin"])
+@allowed_users(allowed_roles=["admin", "customer"])
 def create_item(request):
     return render(request, "items/item.html")
