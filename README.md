@@ -11,7 +11,12 @@ pushes some project for learn concept and be friendly with this concepts.
 >+ then display home page otherwise login page
 >+ don't see login page and register page after login
 
+
+#
 ## customer_user_model:
+
+**FUNCTIONS**
+
 >+ custom user model included some specific fields
 >+ create user or superuser by phone number
 >+ email and phone number are both unique
@@ -21,6 +26,12 @@ pushes some project for learn concept and be friendly with this concepts.
 >+ register completed after login
 >+ then display home page otherwise login page
 >+ don't see login page and register page after login
+
+**USE**
+
+>+ first register account with this path (http://127.0.0.1:8000/accounts/register/)
+>+ then login (http://127.0.0.1:8000/accounts/login/)
+>+ can view (http://127.0.0.1:8000/accounts/home/)
 
 
 ## custom_user_views:
