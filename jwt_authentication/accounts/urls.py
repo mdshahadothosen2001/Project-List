@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 from .views import (
     UserRegistrationView,
     UserActivationView,
@@ -22,4 +22,5 @@ urlpatterns = [
         view=ForgottenPasswordResetView.as_view(),
         name="forgotten_password",
     ),
+    path("", include("accounts.api.urls")),
 ]
