@@ -63,6 +63,8 @@ pushes some project for learn concept and be friendly with this concepts.
 
 
 ## one_time_passwords
+
+**FUNCTION**
 >+ make customuser model using abstracbaseuser
 >+ derived some from [custom_user_model]
 >+ include some specific model fields
@@ -72,6 +74,12 @@ pushes some project for learn concept and be friendly with this concepts.
 >+ display otp at terminal
 >+ checking session time and otp
 >+ if true render home page otherwise required valid otp
+>+ soon wil build logic for one-time-password generator
+
+**USE**
+>+ first register account (http://127.0.0.1:8000/accounts/register/)
+>+ then login (http://127.0.0.1:8000/accounts/login/)
+>+ can view home page (http://127.0.0.1:8000/accounts/home/)
 
 
 
