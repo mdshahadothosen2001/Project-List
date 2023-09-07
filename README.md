@@ -7,11 +7,18 @@ pushes some project for learn concept and be friendly with this concepts.
 
 #
 ## login_system:
+
+**FUNCTIONS**
 >+ here login page and register page and home page
 >+ see login page and register page before login
 >+ register completed after login
 >+ then display home page otherwise login page
 >+ don't see login page and register page after login
+
+**USE**
+>+ first register account (http://127.0.0.1:8000/accounts/register/)
+>+ then login (http://127.0.0.1:8000/accounts/login/)
+>+ can view home page (http://127.0.0.1:8000/accounts/home/)
 
 
 
