@@ -1,9 +1,11 @@
 **Project-List** <br>
 pushes some project for learn concept and be friendly with this concepts.
-
 #
 
 
+
+
+#
 ## login_system:
 >+ here login page and register page and home page
 >+ see login page and register page before login
@@ -12,11 +14,11 @@ pushes some project for learn concept and be friendly with this concepts.
 >+ don't see login page and register page after login
 
 
+
 #
 ## customer_user_model:
 
 **FUNCTIONS**
-
 >+ custom user model included some specific fields
 >+ create user or superuser by phone number
 >+ email and phone number are both unique
@@ -28,7 +30,6 @@ pushes some project for learn concept and be friendly with this concepts.
 >+ don't see login page and register page after login
 
 **USE**
-
 >+ first register account with this path (http://127.0.0.1:8000/accounts/register/)
 >+ then login (http://127.0.0.1:8000/accounts/login/)
 >+ can view (http://127.0.0.1:8000/accounts/home/)
@@ -115,6 +116,9 @@ pushes some project for learn concept and be friendly with this concepts.
 ## orm_portion
 >+ used for django orm concepts
 
+
+
+#
 ## production_order
 
 **FUNCTIONS**
@@ -123,11 +127,13 @@ pushes some project for learn concept and be friendly with this concepts.
 >+ user can order confirm from product list
 
 **USAGE**
-
 >+ go browser (http://127.0.0.1:8000/)
 >+ first login, see product list
 >+ have oder option, if need order just click
 
+
+
+#
 ## production_order
 
 **FUNCTIONS**
