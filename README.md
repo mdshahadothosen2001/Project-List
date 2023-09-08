@@ -289,10 +289,11 @@ like
 ## dj_postgresql
 
 **FUNCTION**
->+
+>+ used for clear to concept of postgresql database
 
 **USE**
->+
+>+ run project use localhost server
+>+ for see model go admin panel
 
 
 
@@ -300,10 +301,18 @@ like
 ## day_calculator
 
 **FUNCTION**
->+
+>+ used DRF
+>+ used for logic day calculation between two dates
+>+ make view and APIs
 
 **USE**
->+
+>+ RESTFull API
+>+ user can use postman for API hit
+>+ for calculate hit API (http://127.0.0.1:8000/) method is POST and give data request
+like
+{"first_date":"2023-08-08",
+"last_date":"2023-09-09"
+}
 
 
 
@@ -311,7 +320,13 @@ like
 ## name_picker
 
 **FUNCTION**
->+
+>+ used for token login authentication with token wich given from another project
+>+ used for make API
+>+ user give some name list return random choichen name from these
 
 **USE**
->+
+>+ user can logig with access token to select auth -> bearer
+>+ API for authentication (http://127.0.0.1:8000/) GET
+>+ for name pick hit API (http://127.0.0.1:8000/name-picker) method is POST
+name list request like
+{"names":["apple","banana","orange"]}
