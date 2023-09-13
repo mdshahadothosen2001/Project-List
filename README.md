@@ -330,3 +330,20 @@ like
 >+ for name pick hit API (http://127.0.0.1:8000/name-picker) method is POST
 name list request like
 {"names":["apple","banana","orange"]}
+
+
+
+#
+## proxy_user_model
+
+**FUNCTION**
+>+ used for clear to concept of proxy model concept
+
+**USE**
+>+ use admin panel
+>+ make super user
+>+ make user
+>+ make some user where set first name 'teacher' for check teacher model
+>+ then see two model
+  1. student where see all users
+  2. teacher:  see user their first name is teacher
