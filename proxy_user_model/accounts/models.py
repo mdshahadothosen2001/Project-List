@@ -7,3 +7,17 @@ class Student(User):
         ordering = ("first_name",)
 
         proxy = True
+
+
+class TeacherManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(first_name="teacher")
+
+
+class Teacher(User):
+    class Meta:
+        ordering = ("first_name",)
+
+        proxy = True
+
+    objects = TeacherManager()
