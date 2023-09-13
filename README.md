@@ -341,9 +341,9 @@ name list request like
 
 **USE**
 >+ use admin panel (http://127.0.0.1:8000/admin)
->+ make super user
->+ make user
->+ make some user where set first name 'teacher' for check teacher model
->+ then see two model
-  1. student where see all users
-  2. teacher:  see user their first name is teacher
+>+ make super user at base model 'User'
+>+ make user at base model 'User'
+>+ make some user where set first name 'teacher' for check teacher model at base model 'User'
+>+ then see two model extra
+  1. student: see all users
+  2. teacher: see users if their first name is teacher
