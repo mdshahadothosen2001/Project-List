@@ -340,7 +340,7 @@ name list request like
 >+ used for clear to concept of proxy model concept
 
 **USE**
->+ use admin panel
+>+ use admin panel (http://127.0.0.1:8000/admin)
 >+ make super user
 >+ make user
 >+ make some user where set first name 'teacher' for check teacher model
