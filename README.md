@@ -341,9 +341,29 @@ name list request like
 
 **USE**
 >+ use admin panel (http://127.0.0.1:8000/admin)
->+ make super user at base model 'User'
+>+ make super user
 >+ make user at base model 'User'
 >+ make some user where set first name 'teacher' for check teacher model at base model 'User'
 >+ then see two model extra
   1. student: see all users
   2. teacher: see users if their first name is teacher
+
+
+
+#
+## multiple_user_model
+
+**FUNCTION**
+>+ used for clear to concept of multiple user model concept
+
+**USE**
+>+ use admin panel (http://127.0.0.1:8000/admin)
+>+ make super user
+>+ make user at base model 'User'
+>+ make some user where set role 'teacher' for check teacher model at base model 'User'
+>+ make some user where set role 'student' for check student model at base model 'User'
+>+ then see three model extra
+  0. user(base model): see all users
+  2. admin: see those users whose role is admin
+  2. teacher: see those users whose role is teacher
+  3. student: see those users whose role is student
