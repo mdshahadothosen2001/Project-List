@@ -32,3 +32,18 @@ class Student(User):
 
     class Meta:
         proxy = True
+
+
+class TeacherManager(BaseUserManager):
+    def get_queryset(self, *args, **kwargs):
+        result = super().get_queryset(*args, **kwargs)
+        return result.filter(role=User.Role.TEACHER)
+
+
+class Teacher(User):
+    base_role = User.Role.TEACHER
+
+    Teacher = TeacherManager()
+
+    class Meta:
+        proxy = True
