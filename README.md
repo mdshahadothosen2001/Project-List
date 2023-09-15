@@ -367,3 +367,27 @@ name list request like
   2. admin: see those users whose role is admin
   2. teacher: see those users whose role is teacher
   3. student: see those users whose role is student
+
+
+
+#
+## travelian
+
+**FUNCTION**
+>+ used DRF
+>+ used for token con cept
+>+ make views and APIs
+
+**USE**
+>+ RESTFull API
+>+ user can use postman for API hit
+>+ for get token hit API (http://127.0.0.1:8000/token/) method is POST and give data request
+like
+{"email":"",
+"password":""
+}
+>+ for get refresh token hit API (http://127.0.0.1:8000/token/refresh/) method is POST and give data request
+like
+{"token":""
+}
+>+ for authentication hit API (http://127.0.0.1:8000/) method is GET, select auth then click bearer then put access token
