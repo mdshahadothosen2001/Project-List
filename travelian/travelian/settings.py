@@ -1,4 +1,5 @@
 from pathlib import Path
+from .JWT_SETTINGS import JWT_SETTINGS
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -22,7 +23,14 @@ LOCAL_APPS = [
     "accounts",
 ]
 
-INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS
+THIRD_PARTY_APPS = [
+    "rest_framework",
+    "rest_framework_simplejwt",
+]
+
+INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS + THIRD_PARTY_APPS
+
+SIMPLE_JWT = JWT_SETTINGS
 
 
 MIDDLEWARE = [
@@ -90,3 +98,10 @@ USE_TZ = True
 STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    ),
+    "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
+}
