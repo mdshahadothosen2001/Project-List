@@ -31,3 +31,14 @@ class CustomTokenObtainPairView(TokenObtainPairView):
         request.session["token"] = token
 
         return Response(token_data)
+
+
+class HomeView(APIView):
+    """Used for authenticated by token"""
+
+    permission_classes = [IsAuthenticated]
+
+    def get(self, format=None):
+        """Used for response success message"""
+
+        return Response({"message": "you are authenticated"})
