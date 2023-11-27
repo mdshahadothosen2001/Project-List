@@ -1,0 +1,13 @@
+1. create venv
+2. activate it
+3. install the requirements 
+    $pip install -r requirements.txt
+
+4. go 'pytest_operations'
+5. if want to run all tests:
+    $pytest -v
+6. if want to run specific folder operation from [basic, alu, prime, factorial] then go this dir 
+    $cd dir-basic
+    $pytest -v
+7. if see 'passed' like 'folder/file-name::test_function passed'
+it is working
